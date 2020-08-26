@@ -1,2 +1,13 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+ *.prefab binary
+ *.unity binary
+ *.anim binary
+ *.controller binary
+ *.mat binary
+ *.asset binary
+ *.png binary
+ *.jpeg binary
+ *.jpg binary
+ *.wav binary
+ *.mp3 binary
