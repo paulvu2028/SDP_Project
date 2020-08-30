@@ -23,19 +23,25 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (Input.GetKey(KeyCode.E))
+        {
+            Quaternion camTurnAngle = Quaternion.AngleAxis(-1 , Vector3.up);
+            offset = camTurnAngle * offset;
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            Quaternion camTurnAngle = Quaternion.AngleAxis(1 , Vector3.up);
+            offset = camTurnAngle * offset;
+        }
+
+        
         if (RotateAroundPlayer)
         {
             Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Horizontal") * RotationsSpeed, Vector3.up);
-
             offset = camTurnAngle  * offset;
         }
+
         Vector3 newPos = playerTransform.position + offset;
-
         transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
-
-        if (LookAtPlayer || RotateAroundPlayer)
-        {
-            transform.LookAt(playerTransform);
-        }
     }
 }

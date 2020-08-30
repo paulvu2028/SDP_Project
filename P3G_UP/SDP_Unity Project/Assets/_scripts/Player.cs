@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,21 +10,29 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpPower = 10f;
     [SerializeField] float turningSpeed = 240f;
     float gravity = 9.81f;
+    
     private Vector3 moveDirectionVector = new Vector3();
 
     //component handles
     [SerializeField] CharacterController _characterController;
+    private Animator _animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _animator = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
+    }
+
+    //trick function
+    public void skateboardtrick()
+    {
+        _animator.SetTrigger("alphaflip");
     }
 
     //movement function is updated to check for keyboard inputs
