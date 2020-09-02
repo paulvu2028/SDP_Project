@@ -60,4 +60,12 @@ public class Player : MonoBehaviour
         moveDirectionVector.y -= gravity * Time.deltaTime;
         _characterController.Move(moveDirectionVector * Time.deltaTime);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Coin"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }
