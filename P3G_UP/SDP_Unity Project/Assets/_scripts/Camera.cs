@@ -43,5 +43,10 @@ public class Camera : MonoBehaviour
 
         Vector3 newPos = playerTransform.position + offset;
         transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
+
+        if (LookAtPlayer || RotateAroundPlayer)
+        {
+            transform.LookAt(playerTransform);
+        }
     }
 }
