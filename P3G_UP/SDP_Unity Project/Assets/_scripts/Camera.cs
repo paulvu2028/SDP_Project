@@ -7,6 +7,8 @@ public class Camera : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     public Vector3 offset; //= new Vector3(0, 3.37f, -10);
 
+
+
     [Range(0.01f, 1.0f)]
     public float SmoothFactor = 0.5f;
 

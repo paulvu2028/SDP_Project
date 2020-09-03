@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Camera camera;
+    public static GameManager control;
+
+    private Camera camera;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField] CharacterController _characterController;
     private Animator _animator;
 
+    [SerializeField] UImanager _uimanager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,16 @@ public class Player : MonoBehaviour
     //trick function
     public void skateboardtrick()
     {
-        _animator.SetTrigger("alphaflip");
+        int r = Random.Range(0, 2);
+        if (r == 0)
+        {
+            _animator.SetTrigger("alphaflip");
+        }
+        else if(r == 1)
+        {
+            _animator.SetTrigger("kickflip");
+        }
+        _uimanager.UpdateScore(100);
     }
 
     //movement function is updated to check for keyboard inputs
