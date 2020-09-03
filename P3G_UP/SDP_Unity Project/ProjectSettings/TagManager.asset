@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< Updated upstream
   - Coin
+=======
+  - NPC
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

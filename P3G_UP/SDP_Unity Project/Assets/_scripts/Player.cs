@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] float jumpPower = 10f;
     [SerializeField] float turningSpeed = 240f;
+ 
+
     float gravity = 9.81f;
     
     private Vector3 moveDirectionVector = new Vector3();
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         movement();
+
     }
 
     //trick function
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour
         _characterController.Move(moveDirectionVector * Time.deltaTime);
     }
 
+   // Updated upstream
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Coin"))
@@ -68,4 +72,8 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
+
+   
+
+  // Stashed changes
 }
