@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class Player : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] float jumpPower = 10f;
     [SerializeField] float turningSpeed = 240f;
- 
 
     float gravity = 9.81f;
     
     private Vector3 moveDirectionVector = new Vector3();
+
+    private int coinCount;
+    public Text coin;
 
     //component handles
     [SerializeField] CharacterController _characterController;
@@ -25,6 +28,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         _animator = this.gameObject.GetComponent<Animator>();
+        coinCount = 0;
+        SetCoinCountText();
     }
 
     // Update is called once per frame
@@ -81,10 +86,15 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Coin"))
         {
             other.gameObject.SetActive(false);
+            coinCount = coinCount + 1;
+            SetCoinCountText();
         }
     }
 
-   
+    void SetCoinCountText()
+    {
+        coin.text = "Coins: " + coinCount.ToString();
+    }
 
   // Stashed changes
 }
