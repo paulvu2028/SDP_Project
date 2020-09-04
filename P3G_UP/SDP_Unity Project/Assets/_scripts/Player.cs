@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     private Vector3 moveDirectionVector = new Vector3();
 
     private int coinCount;
-    public Text coin;
 
     //component handles
     [SerializeField] CharacterController _characterController;
@@ -28,15 +27,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         _animator = this.gameObject.GetComponent<Animator>();
-        coinCount = 0;
-        SetCoinCountText();
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
-
     }
 
     //trick function
@@ -86,14 +82,8 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Coin"))
         {
             other.gameObject.SetActive(false);
-            coinCount = coinCount + 1;
-            SetCoinCountText();
+            _uimanager.UpdateCoins(1);
         }
-    }
-
-    void SetCoinCountText()
-    {
-        coin.text = "Coins: " + coinCount.ToString();
     }
 
   // Stashed changes
