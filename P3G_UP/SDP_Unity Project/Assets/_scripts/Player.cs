@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-
+    //movement variables
     [SerializeField] float speed = 5f;
     [SerializeField] float jumpPower = 10f;
     [SerializeField] float turningSpeed = 240f;
-
     float gravity = 9.81f;
-    
+    //combo variables
+    public string playerTrickString = "";
+    public string correctTrickString;
+    public int trickInputCount = 0;
+
+
+
     private Vector3 moveDirectionVector = new Vector3();
 
     private int coinCount;
@@ -22,7 +27,7 @@ public class Player : MonoBehaviour
     private Animator _animator;
 
     [SerializeField] UImanager _uimanager;
-
+    bool TrickStart;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,21 +38,88 @@ public class Player : MonoBehaviour
     void Update()
     {
         movement();
+        if (TrickStart)
+        {
+            TrickInput();
+        }
     }
 
-    //trick function
-    public void skateboardtrick()
+    //this function selects the skateboard trick to be performed at random
+    public void skateboardtrickSelect()
     {
         int r = Random.Range(0, 2);
         if (r == 0)
         {
-            _animator.SetTrigger("alphaflip");
+            correctTrickString = "kjilk";
         }
         else if(r == 1)
         {
-            _animator.SetTrigger("kickflip");
+            correctTrickString = "jljlk";
         }
-        _uimanager.UpdateScore(100);
+
+        _uimanager.UpdateTrickUI(correctTrickString);
+    }
+    //these functions call animator to trigger animations
+    public void alphaflip()
+    {
+        _animator.SetTrigger("alphaflip");
+    }
+
+    public void kickflip()
+    {
+        _animator.SetTrigger("kickflip");
+    }
+
+    //this function checks the string of trick to be peformed
+    public void trickCheck()
+    {
+        if(playerTrickString == correctTrickString)
+        {
+            _uimanager.UpdateScore(100);
+            if (correctTrickString == "kjilk")
+            {
+                alphaflip();
+            }
+            if (correctTrickString == "jljlk")
+            {
+                kickflip();
+            }
+        }
+
+        Time.timeScale = 1;
+    }
+    //this function gets inputs when trick is to be peformed
+    public void TrickInput()
+    {
+        if (Input.GetKeyDown("j"))
+        {
+            playerTrickString += "j";
+            trickInputCount += 1;
+        }
+        if (Input.GetKeyDown("i"))
+        {
+            playerTrickString += "i";
+            trickInputCount += 1;
+        }
+        if (Input.GetKeyDown("l"))
+        {
+            playerTrickString += "l";
+            trickInputCount += 1;
+        }
+        if (Input.GetKeyDown("k"))
+        {
+            playerTrickString += "k";
+            trickInputCount += 1;
+        }
+
+        if (trickInputCount == 5)
+        {
+            Debug.Log("player combo" + playerTrickString);
+            trickInputCount = 0;
+            trickCheck();
+
+            playerTrickString = "";
+        }
     }
 
     //movement function is updated to check for keyboard inputs
@@ -86,7 +158,13 @@ public class Player : MonoBehaviour
 
             FindObjectOfType<AudioManager>().Play("CollectCoin");
         }
+        if (other.gameObject.CompareTag("Trick"))
+        {
+            Time.timeScale = 0;
+            TrickStart = true;
+            skateboardtrickSelect();
+        }
     }
 
-  // Stashed changes
+
 }
