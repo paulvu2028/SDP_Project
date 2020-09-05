@@ -83,6 +83,8 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             _uimanager.UpdateCoins(1);
+
+            FindObjectOfType<AudioManager>().Play("CollectCoin");
         }
     }
 
