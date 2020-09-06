@@ -79,10 +79,14 @@ public class Player : MonoBehaviour
             if (correctTrickString == "kjilk")
             {
                 alphaflip();
+
+                FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
             if (correctTrickString == "jljlk")
             {
                 kickflip();
+
+                FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
         }
 
