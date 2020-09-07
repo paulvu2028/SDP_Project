@@ -84,13 +84,11 @@ public class Player : MonoBehaviour
             {
                 alphaflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
-                FindObjectOfType<AudioManager>().Play("CorrectInput");
             }
             if (correctTrickString == "jljlk")
             {
                 kickflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
-                FindObjectOfType<AudioManager>().Play("CorrectInput");
             }
         }
         _uimanager.resetTrickUI();
@@ -103,21 +101,25 @@ public class Player : MonoBehaviour
         {
             playerTrickString += "j";
             trickInputCount += 1;
+            FindObjectOfType<AudioManager>().Play("CorrectInput");
         }
         if (Input.GetKeyDown("i"))
         {
             playerTrickString += "i";
             trickInputCount += 1;
+            FindObjectOfType<AudioManager>().Play("CorrectInput");
         }
         if (Input.GetKeyDown("l"))
         {
             playerTrickString += "l";
             trickInputCount += 1;
+            FindObjectOfType<AudioManager>().Play("CorrectInput");
         }
         if (Input.GetKeyDown("k"))
         {
             playerTrickString += "k";
             trickInputCount += 1;
+            FindObjectOfType<AudioManager>().Play("CorrectInput");
         }
 
         if (playerTrickString.Length > 0)

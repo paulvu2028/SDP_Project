@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -66,16 +67,19 @@ public class UImanager : MonoBehaviour
     {
         //Time.timeScale = 1;
         //count is starts at 1 but array starts at 0
-        if (playerString[count -1] == correctTrickString[count -1])
+        
+            if (playerString[count - 1] == correctTrickString[count - 1])
             {
-            //change colour
-            trickImgs[count - 1].color = Color.green;
-        }
-        else
-        {
-            FindObjectOfType<AudioManager>().Play("IncorrectInput");
-            trickImgs[count - 1].color = Color.red;
-        }
+                //change colour
+                trickImgs[count - 1].color = Color.green;
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().Play("IncorrectInput");
+                trickImgs[count - 1].color = Color.red;
+            }
+        
+       
         //Time.timeScale = 0;
     }
 
