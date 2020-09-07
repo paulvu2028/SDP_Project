@@ -84,11 +84,13 @@ public class Player : MonoBehaviour
             {
                 alphaflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
+                FindObjectOfType<AudioManager>().Play("CorrectInput");
             }
             if (correctTrickString == "jljlk")
             {
                 kickflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
+                FindObjectOfType<AudioManager>().Play("CorrectInput");
             }
         }
         _uimanager.resetTrickUI();

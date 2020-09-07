@@ -69,7 +69,6 @@ public class UImanager : MonoBehaviour
         if (playerString[count -1] == correctTrickString[count -1])
             {
             //change colour
-            FindObjectOfType<AudioManager>().Play("CorrectInput");
             trickImgs[count - 1].color = Color.green;
         }
         else
