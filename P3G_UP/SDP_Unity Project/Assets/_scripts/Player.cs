@@ -90,9 +90,8 @@ public class Player : MonoBehaviour
                 kickflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
-            _uimanager.resetTrickUI();
         }
-
+        _uimanager.resetTrickUI();
         Time.timeScale = 1;
     }
     //this function gets inputs when trick is to be peformed

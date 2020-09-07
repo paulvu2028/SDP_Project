@@ -64,7 +64,7 @@ public class UImanager : MonoBehaviour
 
     public void updatePlayerTrickInput(string correctTrickString, string playerString, int count)
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         //count is starts at 1 but array starts at 0
         if (playerString[count -1] == correctTrickString[count -1])
             {
@@ -77,7 +77,7 @@ public class UImanager : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("IncorrectInput");
             trickImgs[count - 1].color = Color.red;
         }
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     //resets player trick ui and hides it
