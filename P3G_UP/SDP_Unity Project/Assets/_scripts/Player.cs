@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     //combo variables
     public string playerTrickString = "";
     public string correctTrickString;
+
     public int trickInputCount = 0;
 
 
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _uimanager.resetTrickUI();
         _animator = this.gameObject.GetComponent<Animator>();
     }
 
@@ -70,24 +72,25 @@ public class Player : MonoBehaviour
         _animator.SetTrigger("kickflip");
     }
 
-    //this function checks the string of trick to be peformed
+    //this function checks the final string of trick to be peformed and the player input string
+    //also performs the trick
     public void trickCheck()
     {
         if(playerTrickString == correctTrickString)
         {
             _uimanager.UpdateScore(100);
+
             if (correctTrickString == "kjilk")
             {
                 alphaflip();
-
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
             if (correctTrickString == "jljlk")
             {
                 kickflip();
-
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
+            _uimanager.resetTrickUI();
         }
 
         Time.timeScale = 1;
@@ -116,12 +119,18 @@ public class Player : MonoBehaviour
             trickInputCount += 1;
         }
 
+        if (playerTrickString.Length > 0)
+        {
+            //update ui
+            _uimanager.updatePlayerTrickInput(correctTrickString, playerTrickString, trickInputCount);
+        }
         if (trickInputCount == 5)
         {
             Debug.Log("player combo" + playerTrickString);
             trickInputCount = 0;
             trickCheck();
 
+            TrickStart = false;
             playerTrickString = "";
         }
     }
@@ -165,6 +174,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Trick"))
         {
             Time.timeScale = 0;
+            _uimanager.enableTrickUI();
             TrickStart = true;
             skateboardtrickSelect();
         }

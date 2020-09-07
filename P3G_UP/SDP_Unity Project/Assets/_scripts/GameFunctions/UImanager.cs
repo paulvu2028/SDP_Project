@@ -38,6 +38,7 @@ public class UImanager : MonoBehaviour
         coinCount += total;
     }
 
+    // updates for player input
     public void UpdateTrickUI(string correctTrickString)
     {
         for (int i = 0; i < 5; i++)
@@ -58,6 +59,43 @@ public class UImanager : MonoBehaviour
             {
                 trickImgs[i].sprite = downArrow_img;
             }
+        }
+    }
+
+    public void updatePlayerTrickInput(string correctTrickString, string playerString, int count)
+    {
+        Time.timeScale = 1;
+        //count is starts at 1 but array starts at 0
+        if (playerString[count -1] == correctTrickString[count -1])
+            {
+            //change colour
+            FindObjectOfType<AudioManager>().Play("CorrectInput");
+            trickImgs[count - 1].color = Color.green;
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("IncorrectInput");
+            trickImgs[count - 1].color = Color.red;
+        }
+        Time.timeScale = 0;
+    }
+
+    //resets player trick ui and hides it
+    public void resetTrickUI()
+    {
+        for (int i = 0; i <5; i++)
+        {
+            trickImgs[i].color = Color.white;
+            trickImgs[i].enabled = false;
+        }
+    }
+
+    //enables trick ui to be seen
+    public void enableTrickUI()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            trickImgs[i].enabled = true;
         }
     }
 
