@@ -63,25 +63,31 @@ public class UImanager : MonoBehaviour
         }
     }
 
+
+
     public void updatePlayerTrickInput(string correctTrickString, string playerString, int count)
     {
         //Time.timeScale = 1;
         //count is starts at 1 but array starts at 0
-        
-            if (playerString[count - 1] == correctTrickString[count - 1])
+         
+            if (playerString[count -1] == correctTrickString[count -1])
             {
                 //change colour
                 trickImgs[count - 1].color = Color.green;
+                //FindObjectOfType<AudioManager>().Play("CorrectInput");
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play("IncorrectInput");
-                trickImgs[count - 1].color = Color.red;
+                trickImgs[count -1].color = Color.red;
+                //FindObjectOfType<AudioManager>().Play("IncorrectInput");
             }
+            
+         
         
        
         //Time.timeScale = 0;
     }
+  
 
     //resets player trick ui and hides it
     public void resetTrickUI()
