@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
     //this function gets inputs when trick is to be peformed
     public void TrickInput()
     {
+        Time.timeScale = 0;
         if (Input.GetKeyDown("j"))
         {
             playerTrickString += "j";

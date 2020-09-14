@@ -15,6 +15,8 @@ public class UImanager : MonoBehaviour
     [SerializeField] Sprite downArrow_img, upArrow_img, leftArrow_img, rightArrow_img;
     [SerializeField] Image[] trickImgs;
 
+    [SerializeField] GameObject settingPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,28 +66,18 @@ public class UImanager : MonoBehaviour
     }
 
 
-
+    //this function updates the ui to red or green to indicate if the correct key is input
     public void updatePlayerTrickInput(string correctTrickString, string playerString, int count)
     {
-        //Time.timeScale = 1;
-        //count is starts at 1 but array starts at 0
-         
             if (playerString[count -1] == correctTrickString[count -1])
             {
                 //change colour
                 trickImgs[count - 1].color = Color.green;
-                //FindObjectOfType<AudioManager>().Play("CorrectInput");
             }
             else
             {
                 trickImgs[count -1].color = Color.red;
-                //FindObjectOfType<AudioManager>().Play("IncorrectInput");
             }
-            
-         
-        
-       
-        //Time.timeScale = 0;
     }
   
 
@@ -111,6 +103,26 @@ public class UImanager : MonoBehaviour
     //placed on reload button and reloads scene
     public void reloadScene()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //open settings panel
+    public void OpenSettings()
+    {
+        Time.timeScale = 0;
+        settingPanel.SetActive(true);
+    }
+
+    //resume game
+    public void resumeGame()
+    {
+        Time.timeScale = 1;
+        settingPanel.SetActive(false);
+    }
+
+    public void loadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
