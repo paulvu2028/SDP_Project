@@ -154,15 +154,32 @@ public class Player : MonoBehaviour
             moveDirectionVector = Vector3.forward * (v);
             moveDirectionVector = transform.TransformDirection(moveDirectionVector);
             moveDirectionVector *= speed;
-
+            if (v > 0 && Input.GetKeyDown(KeyCode.W))
+            {
+                FindObjectOfType<AudioManager>().Play("Skating");
+            }
+            else if (v > 0 && Input.GetKeyUp(KeyCode.W))
+            {
+                FindObjectOfType<AudioManager>().Stop("Skating");
+            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 moveDirectionVector.y = jumpPower;
             }
+
+        }
+        if (v > 0 && Input.GetKeyDown(KeyCode.W))
+        {
+            FindObjectOfType<AudioManager>().Play("Skating");
+        }
+        else if (v> 0 && Input.GetKeyUp(KeyCode.W))
+        {
+            FindObjectOfType<AudioManager>().Stop("Skating");
         }
 
         moveDirectionVector.y -= gravity * Time.deltaTime;
         _characterController.Move(moveDirectionVector * Time.deltaTime);
+
     }
 
    // Updated upstream
@@ -182,6 +199,7 @@ public class Player : MonoBehaviour
             TrickStart = true;
             skateboardtrickSelect();
         }
+        
     }
 
 }
