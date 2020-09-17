@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         {
             TrickInput();
         }
+        _uimanager.greyScale(TrickStart);
     }
 
     //this function selects the skateboard trick to be performed at random
@@ -194,12 +195,20 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Trick"))
         {
+            StartCoroutine(ResetTrickOrb(other));
             Time.timeScale = 0;
             _uimanager.enableTrickUI();
             TrickStart = true;
             skateboardtrickSelect();
         }
-        
     }
 
+    //
+    private IEnumerator ResetTrickOrb(Collider col)
+    {
+        col.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        col.gameObject.SetActive(true);
+    }
 }
+

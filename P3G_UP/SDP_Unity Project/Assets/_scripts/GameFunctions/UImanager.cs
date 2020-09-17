@@ -4,6 +4,8 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
+
 public class UImanager : MonoBehaviour
 {
     [SerializeField] Text scoreText;
@@ -16,6 +18,8 @@ public class UImanager : MonoBehaviour
     [SerializeField] Image[] trickImgs;
 
     [SerializeField] GameObject settingPanel;
+    [SerializeField] PostProcessVolume _PPV;
+
 
     // Start is called before the first frame update
     void Start()
@@ -124,5 +128,20 @@ public class UImanager : MonoBehaviour
     public void loadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    //edit post processing
+    public void greyScale(bool timestopped)
+    {
+        if(timestopped == true)
+        {
+          _PPV.profile.GetSetting<ColorGrading>().temperature.value = Mathf.Lerp(_PPV.profile.GetSetting<ColorGrading>().temperature.value, -50, Time.unscaledDeltaTime);
+          _PPV.profile.GetSetting<ColorGrading>().tint.value = Mathf.Lerp(_PPV.profile.GetSetting<ColorGrading>().tint.value, 35, Time.unscaledDeltaTime);
+        }
+        else if(timestopped == false){
+            _PPV.profile.GetSetting<ColorGrading>().temperature.value = Mathf.Lerp(_PPV.profile.GetSetting<ColorGrading>().temperature.value, 0, Time.unscaledDeltaTime);
+            _PPV.profile.GetSetting<ColorGrading>().tint.value = Mathf.Lerp(_PPV.profile.GetSetting<ColorGrading>().tint.value, 0, Time.unscaledDeltaTime);
+        }
+
     }
 }
