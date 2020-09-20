@@ -151,6 +151,7 @@ public class Player : MonoBehaviour
         transform.Rotate(0, h * turningSpeed * Time.deltaTime, 0);
         if (_characterController.isGrounded)
         {
+            _animator.SetBool("jump", false);
             bool move = (v > 0) || (h != 0);
             moveDirectionVector = Vector3.forward * (v);
             moveDirectionVector = transform.TransformDirection(moveDirectionVector);
@@ -165,6 +166,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                _animator.SetBool("jump", true);
                 moveDirectionVector.y = jumpPower;
             }
 
