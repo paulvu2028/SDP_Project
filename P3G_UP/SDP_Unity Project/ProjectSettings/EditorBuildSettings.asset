@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OpenWorld.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/CharacterCustom.unity
+    guid: 007cd002291a80547838de08134e4f2d
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 1b8c46e77e9f5374786de3b5c8be7598
   m_configObjects: {}
