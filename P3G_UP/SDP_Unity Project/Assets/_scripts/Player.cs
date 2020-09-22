@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     public int trickInputCount = 0;
 
-
+    bool isGround;
 
     private Vector3 moveDirectionVector = new Vector3();
 
@@ -157,18 +157,15 @@ public class Player : MonoBehaviour
             moveDirectionVector = Vector3.forward * (v);
             moveDirectionVector = transform.TransformDirection(moveDirectionVector);
             moveDirectionVector *= speed;
-            if (v > 0 && Input.GetKeyDown(KeyCode.W))
-            {
-                FindObjectOfType<AudioManager>().Play("Skating");
-            }
-            else if (v > 0 && Input.GetKeyUp(KeyCode.W))
-            {
-                FindObjectOfType<AudioManager>().Stop("Skating");
-            }
+
+            isGround = true;
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                isGround = false;
                 _animator.SetBool("jump", true);
                 moveDirectionVector.y = jumpPower;
+                FindObjectOfType<AudioManager>().Stop("Skating");
             }
 
         }
