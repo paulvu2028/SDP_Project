@@ -19,5 +19,7 @@ public class Sound
 
     [HideInInspector]
     public AudioSource source;
+    [SerializeField]
+    public AudioMixerGroup mixerGroup;
 }
 
