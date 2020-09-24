@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using System;
 
 public class UImanager : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class UImanager : MonoBehaviour
     private int coinCount;
 
     [SerializeField] Sprite downArrow_img, upArrow_img, leftArrow_img, rightArrow_img;
+
+    public float UpdateScore()
+    {
+        throw new NotImplementedException();
+    }
+
     [SerializeField] Image[] trickImgs;
 
     [SerializeField] GameObject settingPanel;
@@ -35,9 +42,10 @@ public class UImanager : MonoBehaviour
     }
 
     //function for updateing points and 
-    public void UpdateScore(int points)
+    public int UpdateScore(int points)
     {
         score += points;
+        return score;
     }
 
     public void UpdateCoins(int total)
