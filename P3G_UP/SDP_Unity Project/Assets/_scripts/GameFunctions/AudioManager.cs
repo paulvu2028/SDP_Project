@@ -13,7 +13,6 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
         foreach(Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -63,16 +62,20 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusic (float volume)
     {
-        audioMixer.SetFloat("gameMusic", volume);
-        PlayerPrefs.SetFloat("gameMusic", volume);
-        PlayerPrefs.Save();
+        if (audioMixer != null) {
+            audioMixer.SetFloat("gameMusic", volume);
+            PlayerPrefs.SetFloat("gameMusic", volume);
+            PlayerPrefs.Save();
+        }
     }
 
     public void SetSound(float volume)
     {
-        audioMixer.SetFloat("gameSound", volume);
-        PlayerPrefs.SetFloat("gameSound", volume);
-        PlayerPrefs.Save();
-
+        if(audioMixer != null)
+        {
+            audioMixer.SetFloat("gameSound", volume);
+            PlayerPrefs.SetFloat("gameSound", volume);
+            PlayerPrefs.Save();
+        }
     }
 }
