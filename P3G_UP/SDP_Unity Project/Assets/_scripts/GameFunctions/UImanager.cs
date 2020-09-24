@@ -48,9 +48,10 @@ public class UImanager : MonoBehaviour
         return score;
     }
 
-    public void UpdateCoins(int total)
+    public int UpdateCoins(int total)
     {
         coinCount += total;
+        return coinCount;
     }
 
     // updates for player input
