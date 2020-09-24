@@ -17,8 +17,10 @@ namespace Tests
         [Test]
         public void Player_Testing_for_input()
         {
-            //var player = new Player();
-            float inputv = 0;//Player.movement(0f, 0f);
+            var player = new Player();
+
+            float inputv = player.movement(0f, 0f);
+
             float expected_input = 0f;
 
             Assert.AreEqual(inputv , expected_input);
