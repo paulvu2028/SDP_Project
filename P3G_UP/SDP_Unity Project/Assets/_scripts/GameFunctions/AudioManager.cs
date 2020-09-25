@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    public AudioMixer audioMixer;
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
         foreach(Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
-            s.source.outputAudioMixerGroup = s.mixerGroup;
             s.source.clip = s.clip;
 
             s.source.volume = s.volume;
@@ -51,16 +50,28 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
-    
+    /*
+<<<<<<< HEAD
 
     public void SetMusic (float volume)
     {
+        if (audioMixer != null) {
             audioMixer.SetFloat("gameMusic", volume);
+            PlayerPrefs.SetFloat("gameMusic", volume);
+            PlayerPrefs.Save();
+        }
     }
 
     public void SetSound(float volume)
     {
-            audioMixer.SetFloat("gameSound", volume);   
+        if(audioMixer != null)
+        {
+            audioMixer.SetFloat("gameSound", volume);
+            PlayerPrefs.SetFloat("gameSound", volume);
+            PlayerPrefs.Save();
+        }
     }
-
+=======
+>>>>>>> parent of 5840cf3... SoundSetting
+    */
 }
