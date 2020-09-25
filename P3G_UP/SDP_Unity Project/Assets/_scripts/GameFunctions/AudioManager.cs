@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+    /*
 <<<<<<< HEAD
 
     public void SetMusic (float volume)
@@ -72,4 +73,5 @@ public class AudioManager : MonoBehaviour
     }
 =======
 >>>>>>> parent of 5840cf3... SoundSetting
+    */
 }
