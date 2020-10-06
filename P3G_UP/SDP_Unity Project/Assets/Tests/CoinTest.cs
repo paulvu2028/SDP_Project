@@ -8,6 +8,7 @@ namespace Tests
 {
     public class CoinTest
     {
+        [Test]
         public void Testing_Coin()
         {
             var coin = new UImanager();
