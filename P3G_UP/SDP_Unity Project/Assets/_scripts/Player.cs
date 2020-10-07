@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     //component handles
     [SerializeField] CharacterController _characterController;
     private Animator _animator;
+    private new Camera camera;
 
     [SerializeField] UImanager _uimanager;
     bool TrickStart;
@@ -34,12 +35,24 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 1;
         _uimanager.resetTrickUI();
+        camera = FindObjectOfType<Camera>().GetComponent<Camera>();
         _animator = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (camera.enabled == false)
+            {
+                camera.enabled = true;
+            }
+            else if (camera.enabled == true)
+            {
+                camera.enabled = false;
+            }
+        }
         movement(0, 0);
         if (TrickStart)
         {
@@ -191,7 +204,6 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             _uimanager.UpdateCoins(1);
-
             FindObjectOfType<AudioManager>().Play("CollectCoin");
         }
         if (other.gameObject.CompareTag("Trick"))
