@@ -63,6 +63,7 @@ public class UImanager : MonoBehaviour
         return score;
     }
 
+    //function for updating coins
     public int UpdateCoins(int total)
     {
         coinCount += total;

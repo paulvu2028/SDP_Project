@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     //combo variables
     public string playerTrickString = "";
     public string correctTrickString;
+    int conversion = 200;
 
     public int trickInputCount = 0;
 
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] UImanager _uimanager;
     bool TrickStart;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,14 +88,21 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("kickflip");
     }
-
+    
     //this function checks the final string of trick to be peformed and the player input string
     //also performs the trick
     public void trickCheck()
     {
         if(playerTrickString == correctTrickString)
         {
-            _uimanager.UpdateScore(100);
+            
+            int totalScore = _uimanager.UpdateScore(100);
+
+            if(totalScore == conversion)
+            {
+                _uimanager.UpdateCoins(5);
+                conversion += 200;
+            }
 
             if (correctTrickString == "kjilk")
             {
@@ -214,7 +223,7 @@ public class Player : MonoBehaviour
             TrickStart = true;
             skateboardtrickSelect();
         }
-    }
+    } 
 
     //
     private IEnumerator ResetTrickOrb(Collider col)
