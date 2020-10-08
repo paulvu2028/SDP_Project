@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (camera.enabled == false)
@@ -56,10 +55,8 @@ public class Player : MonoBehaviour
                 camera.enabled = false;
             }
         }
-        movement(0, 0);
-=======
         movement();
->>>>>>> parent of 58cdec3... player movement tdd setup
+
         if (TrickStart)
         {
             TrickInput();

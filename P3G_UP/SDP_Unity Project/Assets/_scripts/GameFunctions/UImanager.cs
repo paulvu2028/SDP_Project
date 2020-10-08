@@ -6,14 +6,25 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 using System;
+using Lowscope.Saving;
 
-public class UImanager : MonoBehaviour
+public class UImanager : MonoBehaviour, ISaveable 
 {
+    //save data class
+    [System.Serializable]
+    public struct SaveData
+    {
+        public int savedCoins;
+    }
+
+    bool isloaded;
+
+
     [SerializeField] Text scoreText;
     public int score = 0;
 
     [SerializeField] Text coin;
-    public static int coinCount = 0;
+    public int coinCount = 0;
 
     [SerializeField] Sprite downArrow_img, upArrow_img, leftArrow_img, rightArrow_img;
 
@@ -31,7 +42,6 @@ public class UImanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -168,5 +178,22 @@ public class UImanager : MonoBehaviour
             _PPV.profile.GetSetting<ColorGrading>().tint.value = Mathf.Lerp(_PPV.profile.GetSetting<ColorGrading>().tint.value, 0, Time.unscaledDeltaTime);
         }
 
+    }
+
+    public string OnSave()
+    {
+        return JsonUtility.ToJson(new SaveData() { savedCoins = this.coinCount });
+    }
+
+    public void OnLoad(string data)
+    {
+        SaveData saveData = JsonUtility.FromJson<SaveData>(data);
+        coinCount = saveData.savedCoins;
+        isloaded = true;
+    }
+
+    public bool OnSaveCondition()
+    {
+        return true;
     }
 }

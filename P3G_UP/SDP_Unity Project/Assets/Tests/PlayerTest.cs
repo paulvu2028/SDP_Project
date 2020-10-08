@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
@@ -9,11 +10,11 @@ namespace Tests
 {
     public class PlayerTest
     {
+        /*
         // A Test behaves as an ordinary method
         [Test]
         public void PlayerTestSimplePasses()
         {
-<<<<<<< HEAD
             //var player = new Player();
             float inputv = 0;//Player.movement(0f, 0f);
             float expected_input = 0f;
@@ -24,10 +25,9 @@ namespace Tests
         private string isEqualTo(float expected_input)
         {
             throw new NotImplementedException();
-=======
+
             // Use the Assert class to test conditions
-           
->>>>>>> parent of 58cdec3... player movement tdd setup
+
         }
 
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
@@ -40,5 +40,6 @@ namespace Tests
             
             yield return null;
         }
+        */
     }
 }
