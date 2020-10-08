@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (camera.enabled == false)
@@ -56,6 +57,9 @@ public class Player : MonoBehaviour
             }
         }
         movement(0, 0);
+=======
+        movement();
+>>>>>>> parent of 58cdec3... player movement tdd setup
         if (TrickStart)
         {
             TrickInput();
@@ -164,10 +168,10 @@ public class Player : MonoBehaviour
     }
 
     //movement function is updated to check for keyboard inputs
-    public float movement(float h, float v)
+    public void movement()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
         if (v < 0)
             v = 0;
@@ -181,7 +185,7 @@ public class Player : MonoBehaviour
             moveDirectionVector *= speed;
 
             isGround = true;
-
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isGround = false;
@@ -195,7 +199,7 @@ public class Player : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("Skating");
         }
-        else if (v > 0 && Input.GetKeyUp(KeyCode.W))
+        else if (v> 0 && Input.GetKeyUp(KeyCode.W))
         {
             FindObjectOfType<AudioManager>().Stop("Skating");
         }
@@ -203,10 +207,9 @@ public class Player : MonoBehaviour
         moveDirectionVector.y -= gravity * Time.deltaTime;
         _characterController.Move(moveDirectionVector * Time.deltaTime);
 
-        return 0;
     }
 
-    // Updated upstream
+   // Updated upstream
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Coin"))
