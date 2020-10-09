@@ -1,47 +1,62 @@
-﻿using System.Collections;
+﻿using Lowscope.Saving;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, ISaveable
 {
-    /*
-    public static void Save(UImanager uimanager)
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/playerinfo.gg";
-        FileStream file = new FileStream(path, FileMode.Create);
-        //set data you want to save here
-        playerData data = new playerData(uimanager);
+    //this class controls global variables for saving and carrying over to seperate scenes
+    public static GameManager control;
 
-        file.Close();
+    bool isloaded;
+
+
+    [System.Serializable]
+    public struct SaveData
+    {
+        public int savedModel;
     }
 
-    public static playerData Load()
+    //this int keeps track of model player has saved and should be using
+    public int characterModel = 0;
+
+    public void OnLoad(string data)
     {
-        string path = Application.persistentDataPath + "/playerinfo.gg";
-        if (File.Exists(path))
+        SaveData saveData = JsonUtility.FromJson<SaveData>(data);
+        characterModel = saveData.savedModel;
+        isloaded = true;
+    }
+
+    public string OnSave()
+    {
+        return JsonUtility.ToJson(new SaveData() { savedModel = this.characterModel });
+    }
+
+    public bool OnSaveCondition()
+    {
+        return true;
+    }
+
+    private void Awake()
+    {
+        if (control == null)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = new FileStream(path, FileMode.Open);
-
-            playerData data = bf.Deserialize(file) as playerData;
-            file.Close();
-
-            return data;
+            DontDestroyOnLoad(gameObject);
+            control = this;
         }
-        else
+        else if (control != this)
         {
-            Debug.LogError("save file not found in " + path);
-            return null;
+            Destroy(gameObject);
         }
     }
-    */
+
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame

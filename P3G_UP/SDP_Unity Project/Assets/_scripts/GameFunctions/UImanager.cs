@@ -15,10 +15,13 @@ public class UImanager : MonoBehaviour, ISaveable
     public struct SaveData
     {
         public int savedCoins;
+        public int savedHighScore;
     }
 
     bool isloaded;
 
+    [SerializeField] Text highScoreText;
+    public int highScore = 0;
 
     [SerializeField] Text scoreText;
     public int score = 0;
@@ -47,24 +50,16 @@ public class UImanager : MonoBehaviour, ISaveable
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score: " + score;
+        if(score > highScore)
+        {
+            highScore = score;
+            OnSave();
+        }
+
+        highScoreText.text = "High Score: " + highScore;
+        scoreText.text = "Current Score: " + score;
         coin.text = "Coins Collected: " + coinCount;
     }
-
-    /*
-    //save and load buttons
-    public void saveData()
-    {
-        GameManager.Save(this);
-    }
-
-    public void loadData()
-    {
-        playerData data = GameManager.Load();
-
-        coinCount = data.playerCoins;
-    }*/
-
 
     //function for updateing points and 
     public int UpdateScore(int points)
@@ -182,13 +177,14 @@ public class UImanager : MonoBehaviour, ISaveable
 
     public string OnSave()
     {
-        return JsonUtility.ToJson(new SaveData() { savedCoins = this.coinCount });
+        return JsonUtility.ToJson(new SaveData() { savedCoins = this.coinCount, savedHighScore = this.highScore });
     }
 
     public void OnLoad(string data)
     {
         SaveData saveData = JsonUtility.FromJson<SaveData>(data);
         coinCount = saveData.savedCoins;
+        highScore = saveData.savedHighScore;
         isloaded = true;
     }
 

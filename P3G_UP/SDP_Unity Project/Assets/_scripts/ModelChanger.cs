@@ -4,31 +4,44 @@ using UnityEngine;
 
 public class ModelChanger : MonoBehaviour
 {
-    public SkinnedMeshRenderer customisation;
+    public SkinnedMeshRenderer _modelref;
 
     public List<Mesh> options = new List<Mesh>();
 
     private int currentOption = 0;
 
+    private void Start()
+    {
+        _modelref.sharedMesh = options[GameManager.control.characterModel];
+    }
+
+    private void Update()
+    {
+        
+    }
+
     public void NextOption()
     {
         currentOption++;
+        GameManager.control.characterModel = currentOption;
         if(currentOption >= options.Count)
         {
             currentOption = 0;
         }
 
-        customisation.sharedMesh = options[currentOption];
+        _modelref.sharedMesh = options[currentOption];
     }
 
     public void PreviousOption()
     {
         currentOption--;
-        if(currentOption <= 0)
+        GameManager.control.characterModel = currentOption;
+        if (currentOption <= 0)
         {
             currentOption = options.Count - 1;
         }
 
-        customisation.sharedMesh = options[currentOption];
+
+        _modelref.sharedMesh = options[currentOption];
     }
 }
