@@ -56,6 +56,7 @@ public class UImanager : MonoBehaviour, ISaveable
             OnSave();
         }
 
+        
         highScoreText.text = "High Score: " + highScore;
         scoreText.text = "Current Score: " + score;
         coin.text = "Coins Collected: " + coinCount;
