@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     //component handles
     [SerializeField] CharacterController _characterController;
     private Animator _animator;
-    private new Camera camera;
+    private new CameraControl camera;
 
     [SerializeField] UImanager _uimanager;
     bool TrickStart;
@@ -37,13 +37,14 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 1;
         _uimanager.resetTrickUI();
-        camera = FindObjectOfType<Camera>().GetComponent<Camera>();
+        camera = FindObjectOfType<CameraControl>().GetComponent<CameraControl>();
         _animator = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (camera.enabled == false)
