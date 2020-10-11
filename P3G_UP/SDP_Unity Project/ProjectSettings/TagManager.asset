@@ -7,6 +7,7 @@ TagManager:
   - Coin
   - Trick
   - Ground
+  - MultiTrick
   layers:
   - Default
   - TransparentFX

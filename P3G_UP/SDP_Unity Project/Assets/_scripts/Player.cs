@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
     public void skateboardtrickSelect()
     {
         int r = Random.Range(0, 2);
+
         if (r == 0)
         {
             correctTrickString = "kjilk";
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour
 
         _uimanager.UpdateTrickUI(correctTrickString);
     }
+
     //these functions call animator to trigger animations
     public void alphaflip()
     {
@@ -216,6 +218,14 @@ public class Player : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("CollectCoin");
         }
         if (other.gameObject.CompareTag("Trick"))
+        {
+            StartCoroutine(ResetTrickOrb(other));
+            Time.timeScale = 0;
+            _uimanager.enableTrickUI();
+            TrickStart = true;
+            skateboardtrickSelect();
+        }
+        if (other.gameObject.CompareTag("MultiTrick"))
         {
             StartCoroutine(ResetTrickOrb(other));
             Time.timeScale = 0;
