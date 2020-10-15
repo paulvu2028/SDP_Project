@@ -26,11 +26,19 @@ public class Player : MonoBehaviour
 
     //component handles
     [SerializeField] CharacterController _characterController;
-    private Animator _animator;
+    [SerializeField]private Animator _animator;
     private new CameraControl camera;
 
     [SerializeField] UImanager _uimanager;
     bool TrickStart;
+
+    // handles for handling ragdoll and character model
+    [SerializeField] private bool dead;
+    [SerializeField] GameObject ragDoll;
+    [SerializeField] GameObject characterModel;
+    [SerializeField] GameObject skateboardModel;
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +46,6 @@ public class Player : MonoBehaviour
         Time.timeScale = 1;
         _uimanager.resetTrickUI();
         camera = FindObjectOfType<CameraControl>().GetComponent<CameraControl>();
-        _animator = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -113,11 +120,15 @@ public class Player : MonoBehaviour
                 alphaflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
-            if (correctTrickString == "jljlk")
+            else if (correctTrickString == "jljlk")
             {
                 kickflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
+        }
+        else
+        {
+            ToggleDead();
         }
         _uimanager.resetTrickUI();
         Time.timeScale = 1;
@@ -188,6 +199,9 @@ public class Player : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                //tesing dead trigger
+                //ToggleDead();
+                //
                 isGround = false;
                 _animator.SetBool("jump", true);
                 moveDirectionVector.y = jumpPower;
@@ -242,6 +256,55 @@ public class Player : MonoBehaviour
         col.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         col.gameObject.SetActive(true);
+    }
+
+
+
+    //call this fucntion to change player into dead state
+    public void ToggleDead()
+    {
+        mainCamera.transform.parent = null;
+        skateboardModel.transform.parent = null;
+        //skateboardModel.GetComponent<Rigidbody>().velocity = rb.velocity;
+
+        dead = true;
+
+        //dead = !dead;
+        if (dead)
+        {
+            CopyTransform(characterModel.transform, ragDoll.transform, rb.velocity);
+            ragDoll.SetActive(true);
+            characterModel.SetActive(false);
+        }
+        else
+        {
+            ragDoll.SetActive(false);
+            characterModel.SetActive(true);
+        }
+        ragDoll.transform.parent = null;
+    }
+
+    //
+    private void CopyTransform(Transform source, Transform destination, Vector3 velocity)
+    {
+        if (source.childCount != destination.childCount)
+        {
+            Debug.LogWarning("invalid transform");
+            return;
+        }
+        for (int i = 0; i < source.childCount; i++)
+        {
+            source = source.GetChild(i);
+            destination = destination.GetChild(i);
+            destination.position = source.position;
+            destination.rotation = source.rotation;
+            var rb = destination.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = velocity;
+            }
+            CopyTransform(source, destination, velocity);
+        }
     }
 }
 
