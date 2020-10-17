@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour
     private Vector3 moveDirectionVector = new Vector3();
 
     private int coinCount;
+
+    public static Player Instance { get; private set; }
 
     //component handles
     [SerializeField] CharacterController _characterController;

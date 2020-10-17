@@ -20,6 +20,9 @@ public class UImanager : MonoBehaviour, ISaveable
 
     bool isloaded;
 
+    //public Button button;
+    public Action ClickFunc = null;
+
     [SerializeField] Text highScoreText;
     public int highScore = 0;
 
@@ -45,7 +48,14 @@ public class UImanager : MonoBehaviour, ISaveable
     // Start is called before the first frame update
     void Start()
     {
+        /*Button btn = button.GetComponent<Button>();
+        btn.onClick.AddListener(clickTask);*/
     }
+
+    /*void clickTask()
+    {
+        Debug.Log("Button Clicked");
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -193,4 +203,12 @@ public class UImanager : MonoBehaviour, ISaveable
     {
         return true;
     }
+
+    /*public Button button;
+
+    void Start()
+    {
+        Button btn = button.GetComponent<Button>();
+        btn.OnClickAddListener(UIShop);
+    }*/
 }
