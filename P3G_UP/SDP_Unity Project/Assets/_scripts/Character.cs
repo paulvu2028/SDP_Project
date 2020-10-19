@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item
+public class Character
 {
-    public enum ItemType
+    public enum CharacterType
     {
         CharacterMaleJacket,
         CharacterBusinessManSuit,
@@ -17,54 +17,54 @@ public class Item
         CharacterMalePolice
 }
 
-    public static int GetCost(ItemType itemType)
+    public static int GetCost(CharacterType characterType)
     {
-        switch(itemType)
+        switch(characterType)
         {
             default:
-            case ItemType.CharacterMaleJacket:
+            case CharacterType.CharacterMaleJacket:
                 return 180;
-            case ItemType.CharacterBusinessManSuit:
+            case CharacterType.CharacterBusinessManSuit:
                 return 200;
-            case ItemType.CharacterBusinessManShirt:
+            case CharacterType.CharacterBusinessManShirt:
                 return 180;
-            case ItemType.CharacterBusinessWoman:
+            case CharacterType.CharacterBusinessWoman:
                 return 190;
-            case ItemType.CharacterFemaleCoat:
+            case CharacterType.CharacterFemaleCoat:
                 return 150;
-            case ItemType.CharacterFemaleJacket:
+            case CharacterType.CharacterFemaleJacket:
                 return 200;
-            case ItemType.CharacterFemalePolice:
+            case CharacterType.CharacterFemalePolice:
                 return 140;
-            case ItemType.CharacterMaleHoodie:
+            case CharacterType.CharacterMaleHoodie:
                 return 120;
-            case ItemType.CharacterMalePolice:
+            case CharacterType.CharacterMalePolice:
                 return 160;
         }
     }
 
-    public static Sprite GetSprite(ItemType itemType)
+    public static Sprite GetSprite(CharacterType characterType)
     {
-        switch(itemType)
+        switch(characterType)
         {
             default:
-            case ItemType.CharacterMaleJacket:
+            case CharacterType.CharacterMaleJacket:
                 return GameAssets.character.CharacterMaleJacket;
-            case ItemType.CharacterBusinessManSuit:
+            case CharacterType.CharacterBusinessManSuit:
                 return GameAssets.character.CharacterBusinessManSuit;
-            case ItemType.CharacterBusinessWoman:
+            case CharacterType.CharacterBusinessWoman:
                 return GameAssets.character.CharacterBusinessWoman;
-            case ItemType.CharacterFemaleCoat:
+            case CharacterType.CharacterFemaleCoat:
                 return GameAssets.character.CharacterFemaleCoat;
-            case ItemType.CharacterFemaleJacket:
+            case CharacterType.CharacterFemaleJacket:
                 return GameAssets.character.CharacterFemaleJacket;
-            case ItemType.CharacterFemalePolice:
+            case CharacterType.CharacterFemalePolice:
                 return GameAssets.character.CharacterFemalePolice;
-            case ItemType.CharacterMaleHoodie:
+            case CharacterType.CharacterMaleHoodie:
                 return GameAssets.character.CharacterMaleHoodie;
-            case ItemType.CharacterBusinessManShirt:
+            case CharacterType.CharacterBusinessManShirt:
                 return GameAssets.character.CharacterBusinessManShirt;
-            case ItemType.CharacterMalePolice:
+            case CharacterType.CharacterMalePolice:
                 return GameAssets.character.CharacterMalePolice;
         }
     }

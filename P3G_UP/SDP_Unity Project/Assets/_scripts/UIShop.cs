@@ -18,11 +18,18 @@ public class UIShop : MonoBehaviour
 
     private void Start()
     {
-        CreateItemButton(Item.GetSprite(Item.ItemType.CharacterMaleJacket), "Male Jacket", Item.GetCost(Item.ItemType.CharacterMaleJacket), 0);
-        CreateItemButton(Item.GetSprite(Item.ItemType.CharacterBusinessManSuit), "Business Suit", Item.GetCost(Item.ItemType.CharacterBusinessManSuit), 1);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterMaleJacket), "Male Jacket", Character.GetCost(Character.CharacterType.CharacterMaleJacket), 0);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterBusinessManSuit), "Business Suit", Character.GetCost(Character.CharacterType.CharacterBusinessManSuit), 1);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterBusinessManShirt), "Business Shirt", Character.GetCost(Character.CharacterType.CharacterBusinessManShirt), 2);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterBusinessWoman), "Business Woman", Character.GetCost(Character.CharacterType.CharacterBusinessWoman), 3);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterFemaleCoat), "Female Coat", Character.GetCost(Character.CharacterType.CharacterFemaleCoat), 4);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterFemaleJacket), "Female Jacket", Character.GetCost(Character.CharacterType.CharacterFemaleJacket), 5);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterFemalePolice), "Female Police", Character.GetCost(Character.CharacterType.CharacterFemalePolice), 6);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterMaleHoodie), "Male Hoodie", Character.GetCost(Character.CharacterType.CharacterMaleHoodie), 7);
+        CreateButton(Character.GetSprite(Character.CharacterType.CharacterMalePolice), "Male Police", Character.GetCost(Character.CharacterType.CharacterMalePolice), 8);
     }
 
-    private void CreateItemButton(Sprite imageSprite, string name, int cost, int position)
+    private void CreateButton(Sprite imageSprite, string name, int cost, int position)
     {
         Transform shopItemTransform = Instantiate(shopItemTemplate, container);
         shopItemTransform.gameObject.SetActive(true);
