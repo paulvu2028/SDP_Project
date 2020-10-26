@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Npc : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class Npc : MonoBehaviour
     public Dialogue dialogue;
     public bool playerInRange;
 
-    private void Update()
+    private void Start()
+    {
+        
+    }
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && playerInRange)
         {
