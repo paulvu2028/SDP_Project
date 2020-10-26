@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d453402a13481774291ec11fba101769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreText: {fileID: 0}
+  highScoreText: {fileID: 681099167}
   highScore: 0
   scoreText: {fileID: 618915516}
   score: 0
@@ -1573,6 +1573,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 302702501}
   offset: {x: 0, y: 11, z: -15}
+  minZoom: 25
+  maxZoom: 65
+  zoomSpeed: 10
+  currentZoom: 45
   SmoothFactor: 0.6
   LookAtPlayer: 0
   RotateAroundPlayer: 1

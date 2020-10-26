@@ -14,8 +14,12 @@ public class UImanager : MonoBehaviour, ISaveable
     [System.Serializable]
     public struct SaveData
     {
+        //saved variables
         public int savedCoins;
         public int savedHighScore;
+
+        //skins
+        //public bool skin1 = false;
     }
 
     bool isloaded;
@@ -23,7 +27,7 @@ public class UImanager : MonoBehaviour, ISaveable
     //public Button button;
     public Action ClickFunc = null;
 
-    [SerializeField] Text highScoreText;
+    [SerializeField] Text highScoreText = null;
     public int highScore = 0;
 
     [SerializeField] Text scoreText;
@@ -66,8 +70,12 @@ public class UImanager : MonoBehaviour, ISaveable
             OnSave();
         }
 
-        
+        if(highScore != null)
+        {
+
+        }
         highScoreText.text = "High Score: " + highScore;
+
         scoreText.text = "Current Score: " + score;
         coin.text = "Coins Collected: " + coinCount;
     }
