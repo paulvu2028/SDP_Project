@@ -70,10 +70,7 @@ public class UImanager : MonoBehaviour, ISaveable
             OnSave();
         }
 
-        if(highScore != null)
-        {
-
-        }
+     
         highScoreText.text = "High Score: " + highScore;
 
         scoreText.text = "Current Score: " + score;
