@@ -12,12 +12,18 @@ public class GameManager : MonoBehaviour, ISaveable
     public static GameManager control;
 
     bool isloaded;
+    
+    //skins bool
+    public bool skin1, skin2, skin3;
+
 
 
     [System.Serializable]
     public struct SaveData
     {
         public int savedModel;
+        public bool skin1, skin2, skin3;
+
     }
 
     //this int keeps track of model player has saved and should be using
@@ -28,11 +34,16 @@ public class GameManager : MonoBehaviour, ISaveable
         SaveData saveData = JsonUtility.FromJson<SaveData>(data);
         characterModel = saveData.savedModel;
         isloaded = true;
+
+        skin1 = saveData.skin1;
+        skin2 = saveData.skin2;
+        skin3 = saveData.skin3;
+
     }
 
     public string OnSave()
     {
-        return JsonUtility.ToJson(new SaveData() { savedModel = this.characterModel });
+        return JsonUtility.ToJson(new SaveData() { savedModel = this.characterModel, skin1 = this.skin1, skin2 = this.skin2, skin3 = this.skin3 });
     }
 
     public bool OnSaveCondition()

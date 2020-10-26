@@ -10,6 +10,7 @@ using Lowscope.Saving;
 
 public class UImanager : MonoBehaviour, ISaveable 
 {
+
     //save data class
     [System.Serializable]
     public struct SaveData
@@ -19,7 +20,6 @@ public class UImanager : MonoBehaviour, ISaveable
         public int savedHighScore;
 
         //skins
-        //public bool skin1 = false;
     }
 
     bool isloaded;
@@ -52,6 +52,7 @@ public class UImanager : MonoBehaviour, ISaveable
     // Start is called before the first frame update
     void Start()
     {
+
         /*Button btn = button.GetComponent<Button>();
         btn.onClick.AddListener(clickTask);*/
     }
@@ -194,6 +195,7 @@ public class UImanager : MonoBehaviour, ISaveable
     public string OnSave()
     {
         return JsonUtility.ToJson(new SaveData() { savedCoins = this.coinCount, savedHighScore = this.highScore });
+        
     }
 
     public void OnLoad(string data)
@@ -201,6 +203,8 @@ public class UImanager : MonoBehaviour, ISaveable
         SaveData saveData = JsonUtility.FromJson<SaveData>(data);
         coinCount = saveData.savedCoins;
         highScore = saveData.savedHighScore;
+
+
         isloaded = true;
     }
 

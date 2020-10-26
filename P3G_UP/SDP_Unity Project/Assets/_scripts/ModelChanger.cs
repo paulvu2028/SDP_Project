@@ -8,7 +8,7 @@ public class ModelChanger : MonoBehaviour
 
     public List<Mesh> options = new List<Mesh>();
 
-    private int currentOption = 0;
+    public int currentOption = 0;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class ModelChanger : MonoBehaviour
     {
         currentOption++;
         GameManager.control.characterModel = currentOption;
-        if(currentOption >= options.Count)
+        if(currentOption == 4)
         {
             currentOption = 0;
         }
@@ -36,9 +36,9 @@ public class ModelChanger : MonoBehaviour
     {
         currentOption--;
         GameManager.control.characterModel = currentOption;
-        if (currentOption <= 0)
+        if (currentOption == -1)
         {
-            currentOption = options.Count - 1;
+            currentOption = 3;
         }
 
 

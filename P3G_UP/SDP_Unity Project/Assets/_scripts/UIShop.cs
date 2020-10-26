@@ -7,10 +7,12 @@ using TMPro;
 public class UIShop : MonoBehaviour
 {
     public GameObject SelectionImg;
+    public UImanager uImanager;
 
+    public int currentSelectedItem;
+    public int currentItemCost;
 
-    public int _currentSelectedItem;
-    public int _currentItemCost;
+    [SerializeField] public Text owned1, owned2, owned3;
 
     public void UpdateShopSelection(int yPosition)
     {
@@ -27,6 +29,22 @@ public class UIShop : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (GameManager.control.skin1 == true)
+        {
+            owned1.text = "owned";
+        }
+        if (GameManager.control.skin2 == true)
+        {
+            owned2.text = "owned";
+        }
+        if (GameManager.control.skin3 == true)
+        {
+            owned3.text = "owned";
+        }
+    }
+
     public void SelectItem(int Item)
     {
         SelectionImg.SetActive(true);
@@ -35,21 +53,45 @@ public class UIShop : MonoBehaviour
             //charaters 0 - 10
             case 0:
                 UpdateShopSelection(260);
-                _currentSelectedItem = 0;
-                _currentItemCost = 10;
+                currentSelectedItem = 0;
+                currentItemCost = 10;
                 break;
             case 1:
                 UpdateShopSelection(218);
-                _currentSelectedItem = 1;
-                _currentItemCost = 15;
+                currentSelectedItem = 1;
+                currentItemCost = 15;
                 break;
             case 2:
                 UpdateShopSelection(174);
-                _currentSelectedItem = 1;
-                _currentItemCost = 15;
+                currentSelectedItem = 2;
+                currentItemCost = 15;
                 break;
 
         }
     }
 
+    public void BuyItem()
+    {
+        //if playerscoins is greater than or equal to cost of select item
+        if (uImanager.coinCount >= currentItemCost)
+        {
+            if (currentSelectedItem == 0)
+            {
+                owned1.text = "owned";
+                GameManager.control.skin1 = true;
+            }
+            if (currentSelectedItem == 1)
+            {
+                owned2.text = "owned";
+                GameManager.control.skin2 = true;
+            }
+            if (currentSelectedItem == 2)
+            {
+                owned3.text = "owned";
+                GameManager.control.skin3 = true;
+            }
+            uImanager.UpdateCoins(-currentItemCost);
+        }
+
+    }
 }
