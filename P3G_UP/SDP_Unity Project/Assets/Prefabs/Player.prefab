@@ -2184,17 +2184,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55adee3d61ac80489b27c3d4c88c69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _modelref: {fileID: 797513911668755153}
+  _modelref: {fileID: 799354845634947706}
   options:
-  - {fileID: 4300002, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
+  - {fileID: 4300008, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300004, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300012, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300010, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
-  - {fileID: 4300016, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
+  - {fileID: 4300008, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300014, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300006, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300008, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300000, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
+  currentOption: 0
 --- !u!1 &797513911673962592
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,15 +4604,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _modelref: {fileID: 799354845634947706}
   options:
-  - {fileID: 4300002, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
+  - {fileID: 4300008, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300004, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300012, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300010, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
-  - {fileID: 4300016, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
+  - {fileID: 4300008, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300014, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300006, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300008, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
   - {fileID: 4300000, guid: 91028badc63f59f43a9c5bda64fbd608, type: 3}
+  currentOption: 0
 --- !u!137 &799354845634947706
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
