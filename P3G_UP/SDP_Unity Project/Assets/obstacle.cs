@@ -18,6 +18,7 @@ public class obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("");
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Player>().ToggleDead();

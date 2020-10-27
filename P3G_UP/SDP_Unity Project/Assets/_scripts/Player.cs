@@ -252,7 +252,9 @@ public class Player : MonoBehaviour
             TrickStart = true;
             skateboardtrickSelect();
         }
-    } 
+    }
+
+
 
     //
     private IEnumerator ResetTrickOrb(Collider col)
