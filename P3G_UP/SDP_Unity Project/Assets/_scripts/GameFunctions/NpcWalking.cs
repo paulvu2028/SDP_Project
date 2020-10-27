@@ -7,7 +7,7 @@ public class NpcWalking : MonoBehaviour
 {
     public GameObject theDestination;
     NavMeshAgent theAgent;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,7 @@ public class NpcWalking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        theAgent.SetDestination(theDestination.transform.position);
+      theAgent.SetDestination(theDestination.transform.position);
     }
-   
+
 }
