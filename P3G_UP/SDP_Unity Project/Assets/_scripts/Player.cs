@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
     //combo variables
     public string playerTrickString = "";
     public string correctTrickString;
+    int conversion = 200;
 
     public int trickInputCount = 0;
 
@@ -23,24 +26,49 @@ public class Player : MonoBehaviour
 
     private int coinCount;
 
+    public static Player Instance { get; private set; }
+
     //component handles
     [SerializeField] CharacterController _characterController;
-    private Animator _animator;
+    [SerializeField]private Animator _animator;
+    private new CameraControl camera;
 
     [SerializeField] UImanager _uimanager;
     bool TrickStart;
+
+    // handles for handling ragdoll and character model
+    [SerializeField] private bool dead;
+    [SerializeField] GameObject ragDoll;
+    [SerializeField] GameObject characterModel;
+    [SerializeField] GameObject skateboardModel;
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
         _uimanager.resetTrickUI();
-        _animator = this.gameObject.GetComponent<Animator>();
+        camera = FindObjectOfType<CameraControl>().GetComponent<CameraControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (camera.enabled == false)
+            {
+                camera.enabled = true;
+            }
+            else if (camera.enabled == true)
+            {
+                camera.enabled = false;
+            }
+        }
         movement();
+
         if (TrickStart)
         {
             TrickInput();
@@ -52,6 +80,7 @@ public class Player : MonoBehaviour
     public void skateboardtrickSelect()
     {
         int r = Random.Range(0, 2);
+
         if (r == 0)
         {
             correctTrickString = "kjilk";
@@ -63,6 +92,7 @@ public class Player : MonoBehaviour
 
         _uimanager.UpdateTrickUI(correctTrickString);
     }
+
     //these functions call animator to trigger animations
     public void alphaflip()
     {
@@ -73,25 +103,36 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("kickflip");
     }
-
+    
     //this function checks the final string of trick to be peformed and the player input string
     //also performs the trick
     public void trickCheck()
     {
         if(playerTrickString == correctTrickString)
         {
-            _uimanager.UpdateScore(100);
+            
+            int totalScore = _uimanager.UpdateScore(100);
+
+            if(totalScore == conversion)
+            {
+                _uimanager.UpdateCoins(5);
+                conversion += 200;
+            }
 
             if (correctTrickString == "kjilk")
             {
                 alphaflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
-            if (correctTrickString == "jljlk")
+            else if (correctTrickString == "jljlk")
             {
                 kickflip();
                 FindObjectOfType<AudioManager>().Play("TrickFinished");
             }
+        }
+        else
+        {
+            ToggleDead();
         }
         _uimanager.resetTrickUI();
         Time.timeScale = 1;
@@ -162,6 +203,9 @@ public class Player : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                //tesing dead trigger
+                //ToggleDead();
+                //
                 isGround = false;
                 _animator.SetBool("jump", true);
                 moveDirectionVector.y = jumpPower;
@@ -190,7 +234,6 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             _uimanager.UpdateCoins(1);
-
             FindObjectOfType<AudioManager>().Play("CollectCoin");
         }
         if (other.gameObject.CompareTag("Trick"))
@@ -201,7 +244,17 @@ public class Player : MonoBehaviour
             TrickStart = true;
             skateboardtrickSelect();
         }
+        if (other.gameObject.CompareTag("MultiTrick"))
+        {
+            StartCoroutine(ResetTrickOrb(other));
+            Time.timeScale = 0;
+            _uimanager.enableTrickUI();
+            TrickStart = true;
+            skateboardtrickSelect();
+        }
     }
+
+
 
     //
     private IEnumerator ResetTrickOrb(Collider col)
@@ -209,6 +262,55 @@ public class Player : MonoBehaviour
         col.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         col.gameObject.SetActive(true);
+    }
+
+
+
+    //call this fucntion to change player into dead state
+    public void ToggleDead()
+    {
+        mainCamera.transform.parent = null;
+        skateboardModel.transform.parent = null;
+        //skateboardModel.GetComponent<Rigidbody>().velocity = rb.velocity;
+
+        dead = true;
+
+        //dead = !dead;
+        if (dead)
+        {
+            CopyTransform(characterModel.transform, ragDoll.transform, rb.velocity);
+            ragDoll.SetActive(true);
+            characterModel.SetActive(false);
+        }
+        else
+        {
+            ragDoll.SetActive(false);
+            characterModel.SetActive(true);
+        }
+        ragDoll.transform.parent = null;
+    }
+
+    //
+    private void CopyTransform(Transform source, Transform destination, Vector3 velocity)
+    {
+        if (source.childCount != destination.childCount)
+        {
+            Debug.LogWarning("invalid transform");
+            return;
+        }
+        for (int i = 0; i < source.childCount; i++)
+        {
+            source = source.GetChild(i);
+            destination = destination.GetChild(i);
+            destination.position = source.position;
+            destination.rotation = source.rotation;
+            var rb = destination.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = velocity;
+            }
+            CopyTransform(source, destination, velocity);
+        }
     }
 }
 

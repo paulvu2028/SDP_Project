@@ -5,16 +5,44 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using System;
+using Lowscope.Saving;
 
-public class UImanager : MonoBehaviour
+public class UImanager : MonoBehaviour, ISaveable 
 {
+
+    //save data class
+    [System.Serializable]
+    public struct SaveData
+    {
+        //saved variables
+        public int savedCoins;
+        public int savedHighScore;
+
+        //skins
+    }
+
+    bool isloaded;
+
+    //public Button button;
+    public Action ClickFunc = null;
+
+    [SerializeField] Text highScoreText = null;
+    public int highScore = 0;
+
     [SerializeField] Text scoreText;
-    private int score = 0;
+    public int score = 0;
 
     [SerializeField] Text coin;
-    private int coinCount;
+    public int coinCount = 0;
 
     [SerializeField] Sprite downArrow_img, upArrow_img, leftArrow_img, rightArrow_img;
+
+    public float UpdateScore()
+    {
+        throw new NotImplementedException();
+    }
+
     [SerializeField] Image[] trickImgs;
 
     [SerializeField] GameObject settingPanel;
@@ -24,25 +52,44 @@ public class UImanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coinCount = 0;
+
+        /*Button btn = button.GetComponent<Button>();
+        btn.onClick.AddListener(clickTask);*/
     }
+
+    /*void clickTask()
+    {
+        Debug.Log("Button Clicked");
+    }*/
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score: " + score;
-        coin.text = "Coins: " + coinCount;
+        if(score > highScore)
+        {
+            highScore = score;
+            OnSave();
+        }
+
+     
+        highScoreText.text = "High Score: " + highScore;
+
+        scoreText.text = "Current Score: " + score;
+        coin.text = "Pizza Collected: " + coinCount;
     }
 
     //function for updateing points and 
-    public void UpdateScore(int points)
+    public int UpdateScore(int points)
     {
         score += points;
+        return score;
     }
 
-    public void UpdateCoins(int total)
+    //function for updating coins
+    public int UpdateCoins(int total)
     {
         coinCount += total;
+        return coinCount;
     }
 
     // updates for player input
@@ -144,4 +191,33 @@ public class UImanager : MonoBehaviour
         }
 
     }
+
+    public string OnSave()
+    {
+        return JsonUtility.ToJson(new SaveData() { savedCoins = this.coinCount, savedHighScore = this.highScore });
+        
+    }
+
+    public void OnLoad(string data)
+    {
+        SaveData saveData = JsonUtility.FromJson<SaveData>(data);
+        coinCount = saveData.savedCoins;
+        highScore = saveData.savedHighScore;
+
+
+        isloaded = true;
+    }
+
+    public bool OnSaveCondition()
+    {
+        return true;
+    }
+
+    /*public Button button;
+
+    void Start()
+    {
+        Button btn = button.GetComponent<Button>();
+        btn.OnClickAddListener(UIShop);
+    }*/
 }

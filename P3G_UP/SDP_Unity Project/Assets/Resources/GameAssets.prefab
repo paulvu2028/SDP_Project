@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3475737442195835485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7684005264417866556}
+  - component: {fileID: -6567051635631370725}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7684005264417866556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475737442195835485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.84584856, y: 85.19362, z: -12.8591}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6567051635631370725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475737442195835485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36438363ff370b64db23f598d46c827a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterMaleJacket: {fileID: 21300000, guid: c00bafe7424b2914f9d2862d6d1ab722,
+    type: 3}
+  CharacterBusinessManSuit: {fileID: 21300000, guid: c638b6c5d0806004fae6094485251306,
+    type: 3}
+  CharacterBusinessManShirt: {fileID: 21300000, guid: f37678c500827e443b29191e880a92c4,
+    type: 3}
+  CharacterBusinessWoman: {fileID: 21300000, guid: c2ffb8bd2117145428513efdf16eeee7,
+    type: 3}
+  CharacterFemaleCoat: {fileID: 21300000, guid: 38da10bbdeabbc942806966ab483dab5,
+    type: 3}
+  CharacterFemaleJacket: {fileID: 21300000, guid: 0f1121b75cd966b498035090eaf93ed1,
+    type: 3}
+  CharacterFemalePolice: {fileID: 21300000, guid: 5d04c159d7283c54c8dcc8f08a9f7412,
+    type: 3}
+  CharacterMaleHoodie: {fileID: 21300000, guid: ef368e76ac769bf4bb14e0b0c87d4086,
+    type: 3}
+  CharacterMalePolice: {fileID: 21300000, guid: 619f6f76324900349a7962cf740effde,
+    type: 3}

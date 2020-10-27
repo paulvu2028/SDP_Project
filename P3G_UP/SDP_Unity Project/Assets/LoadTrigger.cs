@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadTrigger : MonoBehaviour
 {
-    public bool charCustom, lvl1;
+    public bool charCustom, lvl1, openWorld;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,10 @@ public class LoadTrigger : MonoBehaviour
         if (lvl1 == true)
         {
             SceneManager.LoadScene("Level1");
+        }
+        if(openWorld == true)
+        {
+            SceneManager.LoadScene("OpenWorld");
         }
     }
 }
