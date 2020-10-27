@@ -75,7 +75,7 @@ public class UImanager : MonoBehaviour, ISaveable
         highScoreText.text = "High Score: " + highScore;
 
         scoreText.text = "Current Score: " + score;
-        coin.text = "Coins Collected: " + coinCount;
+        coin.text = "Pizza Collected: " + coinCount;
     }
 
     //function for updateing points and 
