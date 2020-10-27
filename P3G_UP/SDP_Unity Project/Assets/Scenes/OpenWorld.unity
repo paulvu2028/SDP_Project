@@ -5070,7 +5070,7 @@ MonoBehaviour:
   manualSaveLoad: 0
   externalListeners: []
   cachedSaveableComponents:
-  - identifier: UImanager-1b4e5
+  - identifier: UImanager-57567
     monoBehaviour: {fileID: 182624421}
   saveIdentification: OpenWorld-UImanager-b9873
   sceneName: OpenWorld
@@ -12964,6 +12964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charCustom: 1
   lvl1: 0
+  openWorld: 0
 --- !u!1001 &484563899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37042,7 +37043,7 @@ MonoBehaviour:
   manualSaveLoad: 0
   externalListeners: []
   cachedSaveableComponents:
-  - identifier: GameManager-10187
+  - identifier: GameManager-5c988
     monoBehaviour: {fileID: 1433624199}
   saveIdentification: OpenWorld-GameManager-477b5
   sceneName: OpenWorld
@@ -40579,6 +40580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charCustom: 0
   lvl1: 1
+  openWorld: 0
 --- !u!4 &1582051332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 472798, guid: 34bd91b097c07bb44bea4694542e023b,
@@ -47861,7 +47863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b38ef9baff32c4ba5e0886313aa480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopPanel: {fileID: 6722441220113035928}
+  shopPanel: {fileID: 0}
 --- !u!65 &1945272701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92844,13 +92846,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16a5467246b31a40bb0639bbebf920b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectionImg: {fileID: 99422514}
-  uImanager: {fileID: 182624421}
+  SelectionImg: {fileID: 0}
+  uImanager: {fileID: 0}
   currentSelectedItem: 0
   currentItemCost: 0
-  owned1: {fileID: 27209519}
-  owned2: {fileID: 2042541740}
-  owned3: {fileID: 1994378516}
+  owned1: {fileID: 0}
+  owned2: {fileID: 0}
+  owned3: {fileID: 0}
 --- !u!224 &6722441220113035935
 RectTransform:
   m_ObjectHideFlags: 0
